@@ -7,7 +7,9 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPopularShow"
         tools:listitem="@layout/item_row"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
