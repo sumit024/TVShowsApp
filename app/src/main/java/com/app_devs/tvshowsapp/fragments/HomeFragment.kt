@@ -8,18 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.app_devs.tvshowsapp.Show
-import com.app_devs.tvshowsapp.ShowResponse
-import com.app_devs.tvshowsapp.ShowsList
+import com.app_devs.tvshowsapp.*
 import com.app_devs.tvshowsapp.adapter.ShowsAdapter
-import com.app_devs.tvshowsapp.ShowsViewModel
 import com.app_devs.tvshowsapp.databinding.FragmentHomeBinding
 import com.app_devs.tvshowsapp.retrofit.RetroService
 import com.app_devs.tvshowsapp.retrofit.RetrofitInstance
@@ -31,7 +30,7 @@ class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
     private lateinit var mShowAdapter: ShowsAdapter
-    private lateinit var mViewModel: ShowsViewModel
+    private val mViewModel: ShowsViewModel by viewModels()
     private var current_page=1
     private var total_pages=1
     private var showList= ArrayList<Show>()
@@ -41,8 +40,10 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding= FragmentHomeBinding.inflate(layoutInflater,container,false)
-        mViewModel=ViewModelProvider(this).get(ShowsViewModel::class.java)
         initRecyclerView()
+        binding.btnShowSaved.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_savedShowsFragment)
+        }
         return binding.root
     }
 

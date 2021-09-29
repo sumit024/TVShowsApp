@@ -1,10 +1,9 @@
 package com.app_devs.tvshowsapp
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.app_devs.tvshowsapp.repository.SavedShowsRepository
 import com.app_devs.tvshowsapp.retrofit.RetroService
 import com.app_devs.tvshowsapp.retrofit.RetrofitInstance
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +12,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ShowsViewModel:ViewModel() {
+class ShowsViewModel(application: Application):AndroidViewModel(application) {
+    val repository:SavedShowsRepository
+    init {
+        val dao=SavedShowsDataBase.getDatabaseInstance(application).getDao()
+        repository= SavedShowsRepository(dao)
+    }
+
     private var showResponseData:MutableLiveData<ShowResponse> = MutableLiveData()
     private var showDetailsData:MutableLiveData<ShowDetails> = MutableLiveData()
 
@@ -74,5 +79,7 @@ class ShowsViewModel:ViewModel() {
         })
 
     }
+    fun saveShow(show: Show)= viewModelScope.launch(Dispatchers.IO) { repository.insertSaveMovie(show) }
+    fun getAllNotes():LiveData<List<Show>> =  repository.getAllSavedShows()
 
 }
