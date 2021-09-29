@@ -3,14 +3,16 @@ package com.app_devs.tvshowsapp.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.app_devs.tvshowsapp.Show
 import com.app_devs.tvshowsapp.databinding.ItemRowBinding
+import com.app_devs.tvshowsapp.fragments.HomeFragmentDirections
 import com.bumptech.glide.Glide
 
-class ShowsAdapter(private val context: Context):RecyclerView.Adapter<RecyclerView.ViewHolder>()
+class ShowsAdapter(private val context: Context,private val showList:ArrayList<Show>):RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
-    var showList= mutableListOf<Show>()
+   //var showList= mutableListOf<Show>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
        return(MyViewHolder(ItemRowBinding.inflate(LayoutInflater.from(context),parent,false)))
     }
@@ -24,6 +26,10 @@ class ShowsAdapter(private val context: Context):RecyclerView.Adapter<RecyclerVi
            holder.binding.startDate.text=model.start_date
            holder.binding.status.text=model.status
            Glide.with(context).load(model.image_thumbnail_path).into(holder.binding.profileImage)
+           holder.itemView.setOnClickListener {
+               val action=HomeFragmentDirections.actionHomeFragmentToDetailsFragment(model)
+               Navigation.findNavController(it).navigate(action)
+           }
        }
     }
 
