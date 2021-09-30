@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
         mViewModel.getShowResponse(current_page)
         mViewModel.getShowResponseObservable().observeOnce(viewLifecycleOwner, Observer {
             if(it == null){
-                Toast.makeText(requireContext(),"No records found",Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(),"No records found. Check your internet connection or restart the app.",Toast.LENGTH_LONG).show()
             }
             else{
                 Log.d("SUMIT","Requesting for page $current_page  ")
@@ -74,7 +74,7 @@ class HomeFragment : Fragment() {
         binding.rvPopularShow.layoutManager=layoutManager
         val decoration=DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL)
         binding.rvPopularShow.addItemDecoration(decoration)
-        mShowAdapter= ShowsAdapter(requireContext(),showList)
+        mShowAdapter= ShowsAdapter(requireContext(),showList, true)
         binding.rvPopularShow.setHasFixedSize(true)
         binding.rvPopularShow.adapter=mShowAdapter
         binding.rvPopularShow.addOnScrollListener(object : RecyclerView.OnScrollListener(){

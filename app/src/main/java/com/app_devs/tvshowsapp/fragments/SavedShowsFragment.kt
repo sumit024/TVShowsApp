@@ -56,7 +56,7 @@ class SavedShowsFragment : Fragment() {
             val decoration= DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
             addItemDecoration(decoration)
             setHasFixedSize(true)
-            mAdapter=ShowsAdapter(requireContext(),list)
+            mAdapter=ShowsAdapter(requireContext(),list,false)
             adapter=mAdapter
         }
     }

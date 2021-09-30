@@ -45,14 +45,19 @@ class DetailsFragment : Fragment() {
     private fun initViewModel() {
         mViewModel.getShowDetails(showData.data.id!!)
         mViewModel.getShowDetailsObservable().observe(viewLifecycleOwner, Observer {
-            show= Show(it.tvShow.id,it.tvShow.name,it.tvShow.network,it.tvShow.start_date,it.tvShow.status,it.tvShow.image_thumbnail_path)
-            Log.d("SUMIT",it.toString())
-            binding.description.text=it.tvShow.description
-            binding.networkName.text=it.tvShow.network
-            binding.status.text=it.tvShow.status
-            val list:List<String> = it.tvShow.pictures!!
-            mAdapter= SliderAdapter(requireContext(),list)
-            binding.viewPager.adapter=mAdapter
+            if(it == null){
+                Toast.makeText(requireContext(),"Check your internet connection",Toast.LENGTH_LONG).show()
+            }
+            else {
+                show = Show(it.tvShow.id, it.tvShow.name, it.tvShow.network, it.tvShow.start_date, it.tvShow.status, it.tvShow.image_thumbnail_path)
+                Log.d("SUMIT", it.toString())
+                binding.description.text = it.tvShow.description
+                binding.networkName.text = it.tvShow.network
+                binding.status.text = it.tvShow.status
+                val list: List<String> = it.tvShow.pictures!!
+                mAdapter = SliderAdapter(requireContext(), list)
+                binding.viewPager.adapter = mAdapter
+            }
         })
     }
 
