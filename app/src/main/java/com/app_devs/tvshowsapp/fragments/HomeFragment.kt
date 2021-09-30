@@ -6,13 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AbsListView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,11 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app_devs.tvshowsapp.*
 import com.app_devs.tvshowsapp.adapter.ShowsAdapter
 import com.app_devs.tvshowsapp.databinding.FragmentHomeBinding
-import com.app_devs.tvshowsapp.retrofit.RetroService
-import com.app_devs.tvshowsapp.retrofit.RetrofitInstance
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.app_devs.tvshowsapp.viewmodels.ShowsViewModel
 
 class HomeFragment : Fragment() {
 

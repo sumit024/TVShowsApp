@@ -11,18 +11,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app_devs.tvshowsapp.R
 import com.app_devs.tvshowsapp.Show
-import com.app_devs.tvshowsapp.ShowsViewModel
-import com.app_devs.tvshowsapp.TvShow
-import com.app_devs.tvshowsapp.adapter.SavedShowsAdapter
+import com.app_devs.tvshowsapp.viewmodels.ShowsViewModel
 import com.app_devs.tvshowsapp.adapter.ShowsAdapter
 import com.app_devs.tvshowsapp.databinding.FragmentSavedShowsBinding
 
 
 class SavedShowsFragment : Fragment() {
     private lateinit var binding:FragmentSavedShowsBinding
-    private val mShowsViewModel:ShowsViewModel by viewModels()
+    private val mShowsViewModel: ShowsViewModel by viewModels()
     private lateinit var mAdapter:ShowsAdapter
     private var list= ArrayList<Show>()
     private lateinit var mShow:Show

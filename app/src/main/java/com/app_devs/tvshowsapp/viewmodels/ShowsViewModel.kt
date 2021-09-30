@@ -1,8 +1,12 @@
-package com.app_devs.tvshowsapp
+package com.app_devs.tvshowsapp.viewmodels
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.app_devs.tvshowsapp.Show
+import com.app_devs.tvshowsapp.ShowDetails
+import com.app_devs.tvshowsapp.ShowResponse
+import com.app_devs.tvshowsapp.database.SavedShowsDataBase
 import com.app_devs.tvshowsapp.repository.SavedShowsRepository
 import com.app_devs.tvshowsapp.retrofit.RetroService
 import com.app_devs.tvshowsapp.retrofit.RetrofitInstance
@@ -15,7 +19,7 @@ import retrofit2.Response
 class ShowsViewModel(application: Application):AndroidViewModel(application) {
     val repository:SavedShowsRepository
     init {
-        val dao=SavedShowsDataBase.getDatabaseInstance(application).getDao()
+        val dao= SavedShowsDataBase.getDatabaseInstance(application).getDao()
         repository= SavedShowsRepository(dao)
     }
 

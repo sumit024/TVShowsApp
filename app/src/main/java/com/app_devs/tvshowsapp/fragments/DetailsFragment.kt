@@ -9,13 +9,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.app_devs.tvshowsapp.R
 import com.app_devs.tvshowsapp.Show
-import com.app_devs.tvshowsapp.ShowDetails
-import com.app_devs.tvshowsapp.ShowsViewModel
+import com.app_devs.tvshowsapp.viewmodels.ShowsViewModel
 import com.app_devs.tvshowsapp.adapter.SliderAdapter
 import com.app_devs.tvshowsapp.databinding.FragmentDetailsBinding
 
